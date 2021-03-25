@@ -1,1 +1,7 @@
 <h1>Movie reviews reloaded</h1>
+
+{% for movie in movies %}
+
+<li>{{ movie.name }} - Directed by {{ movie.director}}</li>
+
+{% endfor %}
