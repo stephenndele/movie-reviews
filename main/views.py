@@ -31,7 +31,7 @@ def add_movies(request):
             return redirect("main:home")
     else:
         form = MovieForm()
-    return render(request, 'main/addmovies.html', {'form': form}) 
+    return render(request, 'main/addmovies.html', {'form': form, "controller":"Add Movies"}) 
 
 
 def edit_movies(request, id):
@@ -46,7 +46,14 @@ def edit_movies(request, id):
             return redirect("main:details", id)
     else:
         form = MovieForm(instance=movie)
-    return render(request,'main/addmovies.html', {"form": form})
+    return render(request,'main/addmovies.html', {"form": form, "controller":"Edit Movies"})
+
+def delete_movies(request, id):
+
+    movie = Movie.objects.get(id=id)
+    movie.delete()
+    return redirect("main:home")
+
 
 
 
