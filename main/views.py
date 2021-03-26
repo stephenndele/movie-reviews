@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
+from .forms import *
 
 # Create your views here.
 def home(request):
@@ -19,3 +20,17 @@ def details(request, id):
     }
 
     return render( request,'main/details.html', context)
+
+def add_movies(request):
+    if request.method == 'POST':
+        form = MovieForm(request.POST or None)
+
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.save()
+            return redirect("main:home")
+    else:
+        form = MovieForm()
+    return render(request, 'main/addmovies.html', {'form': form}) 
+
+

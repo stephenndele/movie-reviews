@@ -7,7 +7,7 @@ class Movie(models.Model):
     cast = models.CharField(max_length=1000)
     description = models.TextField(max_length=6000)
     release_date = models.DateField()
-    averageRating = models.FloatField()
+    averageRating = models.FloatField(default=0)
     image = models.URLField(default=None, null=True)
 
     def __unicode__(self):
