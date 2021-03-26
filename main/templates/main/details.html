@@ -5,14 +5,23 @@
 <div class="container">
     <br>
     <div class="card">
+        <div class="card-body">
+
         <div class="row">
             <div class="col-md-4">
-                <h3>{{movie.name}}</h3>
+                <img src="{{movie.image}}" alt="{{movie.name}}" class="img-fluid" width="80%">
             </div>
             <div class="col-md-8">
-                <h4>{{ movie.description }}</h4>
+                <h3 class="text-center">
+                    {{movie.name}}
+                </h3>
+                <p>{{movie.description}}</p>
+                <h5>Director: {{movie.director}}</h5>
+                <h5>Cast: {{movie.cast}}</h5>
+                <h5>Rating: {{movie.averageRating}}</h5>
             </div>
         </div>
+    </div>
     </div>
 </div>
 
