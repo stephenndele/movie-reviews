@@ -8,6 +8,7 @@ class Movie(models.Model):
     description = models.TextField(max_length=6000)
     release_date = models.DateField()
     averageRating = models.FloatField()
+    image = models.URLField(default=None, null=True)
 
     def __unicode__(self):
         return self.name
