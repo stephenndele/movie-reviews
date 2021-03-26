@@ -34,3 +34,20 @@ def add_movies(request):
     return render(request, 'main/addmovies.html', {'form': form}) 
 
 
+def edit_movies(request, id):
+    movie = Movie.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = MovieForm(request.POST or None, instance=movie)
+
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.save()
+            return redirect("main:details", id)
+    else:
+        form = MovieForm(instance=movie)
+    return render(request,'main/addmovies.html', {"form": form})
+
+
+
+
