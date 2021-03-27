@@ -32,6 +32,16 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'main:add_movies' %}">Add Movies</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts:logout' %}">Log out </a>
+
+        </li>
 
         {% if user.is_authenticated %}
         <li class="nav-item dropdown"> 
@@ -45,12 +55,12 @@
           </ul>
         </li>
       {% else %}
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
-        </li>
+        </li> -->
       {% endif %}
       </ul>
       <form class="d-flex">
