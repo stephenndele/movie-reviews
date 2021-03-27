@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from .forms import *
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def home(request):
@@ -20,7 +22,7 @@ def details(request, id):
     }
 
     return render( request,'main/details.html', context)
-
+@login_required()
 def add_movies(request):
     if request.method == 'POST':
         form = MovieForm(request.POST or None)
