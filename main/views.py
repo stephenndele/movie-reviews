@@ -79,6 +79,32 @@ def add_review(request, id):
     else:
         return redirect("accounts:login")
 
+def edit_review(request, movie_id, review_id):
+    if request.user.is_authenticated():
+        movie = Movie.objects.get(id=movie_id)
+
+        review = Review.objects.get(movie=movie, id=review_id)
+
+        # check id user is logged in is the one who did review
+        if request.user == review.user:
+            # give permissions
+            if request.method == 'POST':
+                form = ReviewForm(request.POST, instance=review)
+                if form.is_valid():
+                    data = form.save(commit=False)
+                    data.save()
+                    return redirect("main:details", movie_id)
+            else:
+                form = ReviewForm(instance= review)
+            return render(request, "main/editreview.html", {'form': form})
+        else:
+            retrun redirect('main:details', movie_id)
+    else:
+        return redirect("accounts:login")
+
+
+
+
 
 
 
