@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg
 
 
 # Create your views here.
@@ -18,9 +19,16 @@ def details(request, id):
     movie = Movie.objects.get(id=id)
     reviews = Review.objects.filter(movie=id).order_by('-comment')
     
+    average = reviews.aggregate(Avg("rating"))["rating__avg"]
+    if average == None:
+        average = 0
+    average = round(average, 2)
+
     context = {
         "movie": movie,
-        "reviews": reviews
+        "reviews": reviews,
+        "average": average,
+
     }
 
     return render( request,'main/details.html', context)

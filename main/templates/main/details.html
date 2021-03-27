@@ -18,10 +18,7 @@
                 <p>{{movie.description}}</p>
                 <h5>Director: {{movie.director}}</h5>
                 <h5>Cast: {{movie.cast}}</h5>
-
-                <!-- <label for="rating"> Rating</label>
-                <input type="text"> -->
-                <h5>Rating: {{movie.averageRating}}</h5>
+                <h5>Rating: {{ average }} / 10</h5>
 
 
                 <a href="{% url 'main:edit_movies' movie.id%}" class="btn btn-warning"> Edit Movie</a>
