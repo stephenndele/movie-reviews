@@ -80,7 +80,7 @@ def add_review(request, id):
         return redirect("accounts:login")
 
 def edit_review(request, movie_id, review_id):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         movie = Movie.objects.get(id=movie_id)
 
         review = Review.objects.get(movie=movie, id=review_id)
@@ -98,7 +98,7 @@ def edit_review(request, movie_id, review_id):
                 form = ReviewForm(instance= review)
             return render(request, "main/editreview.html", {'form': form})
         else:
-            retrun redirect('main:details', movie_id)
+            return redirect('main:details', movie_id)
     else:
         return redirect("accounts:login")
 

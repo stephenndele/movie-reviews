@@ -48,6 +48,7 @@
                <li>Review By: {{ review.user}}</li>
                <li>Comment: {{ review.comment}} </li>
                 <li>Rating: {{ review.rating}}</li>
+                <a href="{% url 'main:edit_review' movie.id review.id %}">Edit Review</a>
                 <br>
                {% endfor %}
            </ul> 
