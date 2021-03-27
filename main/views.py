@@ -16,9 +16,11 @@ def home(request):
 
 def details(request, id):
     movie = Movie.objects.get(id=id)
-
+    reviews = Review.objects.filter(movie=id)
+    
     context = {
-        "movie": movie
+        "movie": movie,
+        "reviews": reviews
     }
 
     return render( request,'main/details.html', context)
@@ -70,7 +72,7 @@ def add_review(request, id):
                 data.user = request.user
                 data.movie = movie
                 data.save()
-                return redirect("main:detail", id)
+                return redirect("main:details", id)
         else:
             form = ReviewForm()
         return render(request, "main/details.html", {'form': form})
