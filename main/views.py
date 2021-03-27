@@ -16,7 +16,7 @@ def home(request):
 
 def details(request, id):
     movie = Movie.objects.get(id=id)
-    reviews = Review.objects.filter(movie=id)
+    reviews = Review.objects.filter(movie=id).order_by('-comment')
     
     context = {
         "movie": movie,
