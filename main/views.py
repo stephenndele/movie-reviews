@@ -35,7 +35,7 @@ def add_movies(request):
         form = MovieForm()
     return render(request, 'main/addmovies.html', {'form': form, "controller":"Add Movies"}) 
 
-
+@login_required()
 def edit_movies(request, id):
     movie = Movie.objects.get(id=id)
 
@@ -50,11 +50,32 @@ def edit_movies(request, id):
         form = MovieForm(instance=movie)
     return render(request,'main/addmovies.html', {"form": form, "controller":"Edit Movies"})
 
+@login_required()
 def delete_movies(request, id):
 
     movie = Movie.objects.get(id=id)
     movie.delete()
     return redirect("main:home")
+
+
+def add_review(request, id):
+    if request.user.is_authenticated:
+        movie = Movie.objects.get(id=id)
+        if request.method == 'POST':
+            form = ReviewForm(request.POST or None)
+            if form.is_valid():
+                data = form.save(commit=False)
+                data.comment = request.POST['comment']
+                data.rating = request.POST['rating']
+                data.user = request.user
+                data.movie = movie
+                data.save()
+                return redirect("main:detail", id)
+        else:
+            form = ReviewForm()
+        return render(request, "main/details.html", {'form': form})
+    else:
+        return redirect("accounts:login")
 
 
 
