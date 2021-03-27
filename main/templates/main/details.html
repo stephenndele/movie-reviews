@@ -18,7 +18,12 @@
                 <p>{{movie.description}}</p>
                 <h5>Director: {{movie.director}}</h5>
                 <h5>Cast: {{movie.cast}}</h5>
+
+                <!-- <label for="rating"> Rating</label>
+                <input type="text"> -->
                 <h5>Rating: {{movie.averageRating}}</h5>
+
+
                 <a href="{% url 'main:edit_movies' movie.id%}" class="btn btn-warning"> Edit Movie</a>
                 <a href="{% url 'main:delete_movies' movie.id%}" class="btn btn-danger" onclick="return confirm('Are you sure you wanna delete this?')"> Delete Movie</a>
             </div>
@@ -33,8 +38,10 @@
                 {% csrf_token %}
                 <label for="comment">Review</label>
                 <textarea name="comment" id="comment" cols="30" rows="5" class="form-control"></textarea>
-                <label for="rating"></label>
-                <input type="text" name="rating" class="form-control">
+                <label for="rating">Rating</label>
+                <input type="rating"  id="rangeInput" name="rating" min="0" max="10" value="0" step="0.1" 
+                oninput="amount.value=rangeInput.value">
+                <output name="amount" id="amount" for="rangeInput" >0</output>
                 <br>
                 <input type="submit" class="btn btn-danger" value="Save Review">
             </form>
