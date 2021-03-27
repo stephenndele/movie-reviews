@@ -1,0 +1,3 @@
+Hello {{user}}
+
+Welcome to the Movie Review Center. Here you give give reviews to movies that that you hav watched before.
