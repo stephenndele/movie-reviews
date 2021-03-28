@@ -73,7 +73,7 @@ def delete_movies(request, id):
     movie.delete()
     return redirect("main:home")
 
-
+@login_required()
 def add_review(request, id):
     if request.user.is_authenticated:
         movie = Movie.objects.get(id=id)
@@ -92,9 +92,9 @@ def add_review(request, id):
         return render(request, "main/details.html", {'form': form})
     else:
         return redirect("accounts:login")
-
+@login_required()
 def edit_review(request, movie_id, review_id):
-    if request.user.is_authenticated:
+    if request.userk.is_authenticated:
         movie = Movie.objects.get(id=movie_id)
 
         review = Review.objects.get(movie=movie, id=review_id)
@@ -121,6 +121,7 @@ def edit_review(request, movie_id, review_id):
         return redirect("accounts:login")
 
 # delete reviews
+@login_required()
 def delete_review(request, movie_id, review_id):
     if request.user.is_authenticated:
         movie = Movie.objects.get(id=movie_id)
