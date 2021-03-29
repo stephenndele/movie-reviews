@@ -94,7 +94,7 @@ def add_review(request, id):
         return redirect("accounts:login")
 @login_required()
 def edit_review(request, movie_id, review_id):
-    if request.userk.is_authenticated:
+    if request.user.is_authenticated:
         movie = Movie.objects.get(id=movie_id)
 
         review = Review.objects.get(movie=movie, id=review_id)
