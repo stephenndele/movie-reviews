@@ -9,6 +9,13 @@ The movie review center is platform that allows users post the movies they have 
 [View Site](https://moviereviewscenter.herokuapp.com/)
 
 
+## Screenshots
+
+![Alt text](/moviereview/static/moviehome.png?raw=true "Main Page")
+
+
+![Alt text](moviereview/static/review.png?raw=true "Motivationals")
+
 ## Setup Instructions:
 ### Requirements
 
