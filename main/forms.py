@@ -6,6 +6,10 @@ class MovieForm(forms.ModelForm):
         model = Movie
         fields = ('name', 'director', 'cast', 'description', 'release_date', 'image')
 
+        widgets = {
+            'image': forms.TextInput(attrs={'placeholder': 'Add image url.... '}),
+        }
+
 
 class ReviewForm(forms.ModelForm):
     class Meta:
